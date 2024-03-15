@@ -1,0 +1,45 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/product_service
+    username: springstudent
+    password: springstudent
+  jpa:
+    properties:
+      javax:
+        persistence:
+          validation:
+            mode: none
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  main:
+    banner-mode: off
+app:
+  routesMicroservices:
+    paymentService:
+      createOrder: http://localhost:8078/paymentservice/createorder
+    tokenService:
+      extractUsername: http://localhost:8079/tokenservice/extractusername
+  routesController:
+    requestmapping:
+      categoryServiceController: /categoryservice/category
+      productServiceController: /productservice/product
+    product:
+      productDetails: /getproductinfo
+      buyWithProductCode: /createorder
+      productListResponse: /productlist
+      productListByCategoryName: /categorylistbycategoryname
+    category:
+      categoryListResponse: /categorylist
+
+#app:
+#  jwtSecret: S5arZ8qX8Anvk60LIHdGKZiGyLAyxW+LU1Xw2H4R6Uu1ndlUNPqhpVuKtFsfFvA+
+#  jwtCryptoSecret : sBnlg0BGosgPMQju
+#logging:
+#  level:
+#    org.springframework: DEBUG
