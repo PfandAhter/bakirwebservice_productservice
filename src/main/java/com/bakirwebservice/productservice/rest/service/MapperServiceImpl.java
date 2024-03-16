@@ -21,7 +21,7 @@ public class MapperServiceImpl implements IMapperService {
     //Normal modelMapper cant map list so we created own modelmapper
 
     @Override
-    public <T,D> List<D> modelMapper(List<T> source , Class<D> destination){
+    public <T,D> List<D> map(List<T> source , Class<D> destination){
         List<D> target = new ArrayList<>();
         for( T element : source){
             target.add(modelMapper.map(element,destination));
