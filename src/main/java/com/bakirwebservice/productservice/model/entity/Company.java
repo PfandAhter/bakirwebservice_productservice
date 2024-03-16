@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "company")
 @Entity
@@ -27,5 +28,5 @@ public class Company {
             orphanRemoval = true,
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    private List<Product> products;
+    private Set<Product> products;
 }

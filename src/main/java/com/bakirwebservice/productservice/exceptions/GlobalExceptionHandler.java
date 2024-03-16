@@ -1,7 +1,7 @@
 package com.bakirwebservice.productservice.exceptions;
 
 import com.bakirwebservice.productservice.api.response.BaseResponse;
-import com.bakirwebservice.productservice.model.constants.ErrorCodeConstants;
+import com.bakirwebservice.productservice.lib.constants.ErrorCodeConstants;
 import jakarta.security.auth.message.AuthException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.client.ResourceAccessException;
 
-import static com.bakirwebservice.productservice.model.constants.Constants.FAILED;
+import static com.bakirwebservice.productservice.lib.constants.Constants.FAILED;
 
 
 @RestControllerAdvice

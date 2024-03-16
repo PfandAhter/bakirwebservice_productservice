@@ -1,7 +1,7 @@
 package com.bakirwebservice.productservice.api.response;
 
-import com.bakirwebservice.productservice.model.constants.Constants;
-import com.bakirwebservice.productservice.model.constants.ResponseStatus;
+import com.bakirwebservice.productservice.lib.constants.Constants;
+import com.bakirwebservice.productservice.lib.constants.ResponseStatus;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @JsonPropertyOrder({
         "Statu",
         "HataKodu",

@@ -1,4 +1,4 @@
-package com.bakirwebservice.productservice.rest.aspect;
+package com.bakirwebservice.productservice.infra.aspect;
 
 import com.bakirwebservice.productservice.model.entity.ErrorCodes;
 import com.bakirwebservice.productservice.repository.ErrorCodeRepository;

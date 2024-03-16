@@ -1,4 +1,4 @@
-package com.bakirwebservice.productservice.model.constants;
+package com.bakirwebservice.productservice.lib.constants;
 
 public class Constants {
     public static final String SUCCESS = "SUCCESS";

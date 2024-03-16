@@ -14,5 +14,4 @@ public class BaseRequest {
     @JsonIgnore
     private LocalDateTime time = LocalDateTime.now();
 
-    private String token;
 }

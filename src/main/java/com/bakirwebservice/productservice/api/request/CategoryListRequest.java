@@ -3,12 +3,10 @@ package com.bakirwebservice.productservice.api.request;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
+public class CategoryListRequest {
 
-public class GetProductDetailsRequest {
+    private Long categoryId;
 
-    private List<Long> productCodeList;
 }
