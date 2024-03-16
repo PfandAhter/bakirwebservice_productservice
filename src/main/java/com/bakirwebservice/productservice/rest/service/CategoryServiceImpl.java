@@ -22,6 +22,6 @@ public class CategoryServiceImpl implements ICategoryService {
 
     @Override
     public List<CategoryDTO> categoryListResponse(BaseRequest request){
-        return mapperService.modelMapper(categoryRepository.findAll(), CategoryDTO.class);
+        return mapperService.map(categoryRepository.findAll(), CategoryDTO.class);
     }
 }

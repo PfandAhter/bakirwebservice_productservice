@@ -37,23 +37,23 @@ public class ProductServiceController implements ProductRestServiceApi {
     private final ProductServiceImpl productService;
 
     @Override
-    public ResponseEntity<List<ProductDTO>> productListResponse(BaseRequest baseRequest, HttpServletRequest request, BindingResult bindingResult) {
+    public ResponseEntity<List<ProductDTO>> productListResponse(BaseRequest baseRequest, HttpServletRequest request) {
         return ResponseEntity.ok(productService.productListResponse(baseRequest));
     }
 
     @Override
-    public ResponseEntity<List<ProductDTO>> categoryListByCategoryName(GetCategoryListRequest getCategoryListRequest, HttpServletRequest request, BindingResult bindingResult) {
+    public ResponseEntity<List<ProductDTO>> categoryListByCategoryName(GetCategoryListRequest getCategoryListRequest, HttpServletRequest request) {
         return ResponseEntity.ok(productService.categoryListByCategoryName(getCategoryListRequest));
     }
 
     @Override
-    public ResponseEntity<BaseResponse> buyProductWithProductCode(CreateOrderWithProductCodeRequest createOrderWithProductCodeRequest, HttpServletRequest request, BindingResult bindingResult) {
+    public ResponseEntity<BaseResponse> buyProductWithProductCode(CreateOrderWithProductCodeRequest createOrderWithProductCodeRequest, HttpServletRequest request) {
         return ResponseEntity.ok(productService.createOrder(createOrderWithProductCodeRequest));
     }
 
     @Override
-    public ResponseEntity<GetProductDetailsResponse> getProductInfo(ArrayList<OrderListDTO> orderListDTOArrayList) {
-        return ResponseEntity.ok(productService.getProductInfoByProductCode(orderListDTOArrayList));
+    public ResponseEntity<GetProductDetailsResponse> getProductInfo(GetProductDetailsRequest getProductDetailsRequest,HttpServletRequest request) {
+        return ResponseEntity.ok(productService.getProductInfoByProductCode(getProductDetailsRequest));
     }
 
 }

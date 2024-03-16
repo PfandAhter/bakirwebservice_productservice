@@ -1,12 +1,13 @@
 package com.bakirwebservice.productservice.rest.service;
 
-import com.bakirwebservice.productservice.api.request.*;
+import com.bakirwebservice.productservice.api.request.BaseRequest;
+import com.bakirwebservice.productservice.api.request.CreateOrderWithProductCodeRequest;
+import com.bakirwebservice.productservice.api.request.GetCategoryListRequest;
+import com.bakirwebservice.productservice.api.request.GetProductDetailsRequest;
 import com.bakirwebservice.productservice.api.response.BaseResponse;
 import com.bakirwebservice.productservice.api.response.GetProductDetailsResponse;
-import com.bakirwebservice.productservice.model.dto.OrderListDTO;
 import com.bakirwebservice.productservice.model.dto.ProductDTO;
 import com.bakirwebservice.productservice.model.dto.ProductDetails;
-import com.bakirwebservice.productservice.model.entity.Product;
 import com.bakirwebservice.productservice.repository.CategoryRepository;
 import com.bakirwebservice.productservice.repository.ProductRepository;
 import com.bakirwebservice.productservice.rest.service.interfaces.IProductService;
@@ -17,7 +18,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,13 +45,13 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     public List<ProductDTO> productListResponse(BaseRequest request) {
-        return mapperService.modelMapper(productRepository.findAll(), ProductDTO.class);
+        return mapperService.map(productRepository.findAll(), ProductDTO.class);
 
     }
 
     @Override
     public List<ProductDTO> categoryListByCategoryName(GetCategoryListRequest request) {
-        return mapperService.modelMapper(Arrays.asList(productRepository.findProductsByCategory(categoryRepository.findByCategoryName(request.getCategoryName()))), ProductDTO.class);
+        return mapperService.map(Arrays.asList(productRepository.findProductsByCategory(categoryRepository.findByCategoryName(request.getCategoryName()))), ProductDTO.class);
 
     }
 
@@ -70,36 +70,8 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public GetProductDetailsResponse getProductInfoByProductCode(ArrayList<OrderListDTO> request) {
-        Long localTotalAmount = 0L;
-
-        List<GetProductDetailsResponse> getProductDetailsResponseList = new ArrayList<>();
-
-        ProductDetails test = (ProductDetails) new GetProductDetailsResponse().getProductDetailsList();
-
-        GetProductDetailsResponse getProductDetailsResponse = new GetProductDetailsResponse();
-
-        for (int i = 0; i < request.size(); i++) {
-            Product localProduct = productRepository.findByProductCode(request.get(i).getProductCode());
-            getProductDetailsResponse.setProductDetailsList(modelMapper.map(localProduct, ArrayList.class));
-
-            getProductDetailsResponseList.add(getProductDetailsResponse);
-//            productDetailsResponseList.add(GetProductDetailsResponse.builder().productDetailsList()
-//                    .productName(localProduct.getProductName())
-//                    .companyName(localProduct.getCompany().getCompanyName())
-//                    .categoryName(localProduct.getCategory().getCategoryName())
-//                    .productCode(localProduct.getProductCode())
-//                    .price(localProduct.getPrice())
-//                    .orderQuantity(request.get(i).getOrderQuantity())
-//                    .description(localProduct.getDescription())
-//                    .build());
-            localTotalAmount += localProduct.getPrice();
-        }
-        for(int i = 0 ;i< request.size();i++){
-            getProductDetailsResponseList.get(0).getProductDetailsList().get(i).setTotalPriceOnCart(localTotalAmount);
-        }
-
-        return getProductDetailsResponse;
+    public GetProductDetailsResponse getProductInfoByProductCode(GetProductDetailsRequest getProductDetailsRequest) {
+        return new GetProductDetailsResponse(mapperService.map(productRepository.findAll().stream().filter(entity->getProductDetailsRequest.getProductCodeList().contains(entity.getProductCode())).toList(), ProductDetails.class));
     }
 
 }
