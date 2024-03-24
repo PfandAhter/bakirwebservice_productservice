@@ -19,6 +19,8 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import java.util.Objects;
+
 import static com.bakirwebservice.stockservice.lib.constants.ResponseStatus.FAILED;
 
 
@@ -51,7 +53,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        return ResponseEntity.badRequest().body(createFailResponse(ex.getBindingResult().getFieldError().getDefaultMessage()));
+        return ResponseEntity.badRequest().body(createFailResponse(Objects.requireNonNull(ex.getBindingResult().getFieldError()).getDefaultMessage()));
     }
 
     private BaseResponse createFailResponse(String errorKey) {

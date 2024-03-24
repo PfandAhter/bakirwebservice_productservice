@@ -6,7 +6,7 @@ spring:
   application:
     name: stock-service
   datasource:
-    url: jdbc:mysql://localhost:3306/product_service
+    url: jdbc:mysql://localhost:3306/stock_service
     username: root
     password: root
   jpa:

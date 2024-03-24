@@ -6,7 +6,7 @@ import lombok.Getter;
 public class IllegalArgumentException extends Exception{
 
     @Getter
-    private String message;
+    private final String message;
 
     public IllegalArgumentException( ){
         super();

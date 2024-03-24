@@ -3,22 +3,19 @@ package com.bakirwebservice.stockservice.model.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
-
 public class ProductDTO {
 
     private String productId;
 
     private String productName;
 
-    private String companyName;
+    private String categoryId;
 
-    private String categoryName;
-
-    private String productCode;
-
-    private int price;
+    private BigDecimal price;
 
     private int stock;
 

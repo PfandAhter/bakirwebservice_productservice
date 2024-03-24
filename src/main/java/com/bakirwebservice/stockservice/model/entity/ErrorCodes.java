@@ -7,15 +7,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @Entity
 @Table(name = "error_codes")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class ErrorCodes {
 
     @Id

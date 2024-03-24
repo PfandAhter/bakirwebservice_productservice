@@ -5,11 +5,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
+
 @Table(name = "product")
 @Entity
 @Getter
 @Setter
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -20,15 +23,13 @@ public class Product {
     private String productName;
 
     @Column(name = "price")
-    private Long price;
+    private BigDecimal price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @Column(name = "category_id")
+    private String categoryId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "company_id")
-    private Company company;
+    @Column(name = "company_id")
+    private String companyId;
 
     @Column(name = "stock")
     private int stock;
