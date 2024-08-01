@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -44,6 +45,18 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<BaseResponse> handleException(ResourceAccessException e) {
         log.error("Error : " + e.getMessage());
         return ResponseEntity.badRequest().body(createFailResponse(ErrorCodeConstants.SERVICE_UNAVAILABLE));
+    }
+
+    @ExceptionHandler(OutOfStockException.class)
+    public ResponseEntity<BaseResponse> handleException(OutOfStockException e){
+        log.error("Error : " + e.getMessage());
+        return ResponseEntity.badRequest().body(createFailResponse(e.getMessage()));
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<BaseResponse> handleException(AccessDeniedException e){
+        log.error("Error : " + e.getMessage());
+        return ResponseEntity.badRequest().body(createFailResponse("ACCESS DENIED"));
     }
 
     @ExceptionHandler(AuthException.class)

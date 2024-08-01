@@ -17,20 +17,21 @@ public class GeneralInterceptorAspect {
 
     private final ErrorCodeRepository errorCodeRepository;
 
-    @Before(value = "execution(* com.bakirwebservice.productservice.exceptions..*(..)) ")
+    @Before(value = "execution(* com.bakirwebservice.stockservice.exceptions..*(..)) ")
     public void beforeException (JoinPoint joinPoint){
         Object [] parameters = joinPoint.getArgs();
         for(Object param : parameters){
             if(param instanceof Exception){
-//                if(errorCodeRepository.findErrorByErrorCode(param.getClass().getName()) == null){
+                if(errorCodeRepository.findErrorByErrorCode(param.getClass().getName()) == null){
 //                    ErrorCodes errorCodes = new ErrorCodes();
-//                    errorCodes.setError(param.getClass().getName());
-//                    errorCodes.setError_description(((Exception) param).getMessage());
+//                    errorCodes.setErrorCode(param.getClass().getName());
+//                    errorCodes.setErrorDescription(((Exception) param).getMessage());
 //                    errorCodeRepository.save(errorCodes);
 //                    Long localCode = 2000L;
+//                    errorCodes.set
 //                    errorCodes.setError_code(errorCodes.getId()+localCode);
 //                    errorCodeRepository.save(errorCodes);
-//                }
+                }
             }
         }
     }

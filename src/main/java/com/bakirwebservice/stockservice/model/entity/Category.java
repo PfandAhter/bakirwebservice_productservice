@@ -26,13 +26,14 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
+    @Column(name = "status")
+    private String status;
+
     @OneToMany(mappedBy = "parentId",
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
     private Set<Category> children;
 
-    @Column(name = "status")
-    private String status;
 
 }
 

@@ -1,13 +1,16 @@
 package com.bakirwebservice.stockservice.model.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
 
 @Table(name = "company")
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 
 public class Company {
 
@@ -18,5 +21,11 @@ public class Company {
 
     @Column(name = "company_name")
     private String companyName;
+
+    @Column(name = "active")
+    private int active;
+
+    @Column(name = "status")
+    private String status;
 
 }

@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 @Table(name = "product")
 @Entity
@@ -34,8 +35,15 @@ public class Product implements Serializable {
     @Column(name = "stock")
     private int stock;
 
+    @Column(name = "active")
+    private int active;
+
     @Column(name = "description")
     private String description;
 
+    @Column(name = "stock_need")
+    private int stockNeed;
 
+    @Column(name = "out_of_stock_date")
+    private Timestamp outOfStockDate;
 }

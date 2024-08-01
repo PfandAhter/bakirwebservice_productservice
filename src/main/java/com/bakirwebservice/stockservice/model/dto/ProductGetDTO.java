@@ -4,10 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
-public class ProductDTO {
+
+public class ProductGetDTO {
 
     private String productId;
 
@@ -24,4 +26,6 @@ public class ProductDTO {
     private int commentCount;
 
     private String description;
+
+    private List<CommentDTO> comments;
 }

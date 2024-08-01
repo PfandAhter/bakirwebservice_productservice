@@ -7,8 +7,8 @@ spring:
     name: stock-service
   datasource:
     url: jdbc:mysql://localhost:3306/stock_service
-    username: root
-    password: root
+    username: springstudent
+    password: springstudent
   jpa:
     properties:
       javax:
@@ -21,12 +21,29 @@ spring:
     open-in-view: false
   main:
     banner-mode: off
+
+client:
+  feign:
+    payment-service:
+      path: http://localhost:8078/payment
+      userOrderedProduct: /product/ordered
+
+    microServiceRegister-service:
+      path: http://localhost:8090/registerservice
+      ready: /ready
+      stopped: /stopped
+
+    user-service:
+      path: http://localhost:8082/user
+      extractRoleFromToken: /extract/role
+      extractSellerNameFromToken: /extract/seller-name
+
+    token-service:
+      path: http://localhost:8079/token
+      extractUsername: /extract/username
+
 app:
   client:
-    paymentService:
-      createOrder: http://localhost:8078/paymentservice/createorder
-    tokenService:
-      extractUsername: http://localhost:8079/tokenservice/extractusername
 
 #app:
 #  jwtSecret: S5arZ8qX8Anvk60LIHdGKZiGyLAyxW+LU1Xw2H4R6Uu1ndlUNPqhpVuKtFsfFvA+

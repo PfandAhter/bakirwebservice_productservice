@@ -7,7 +7,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CompanyRepository extends JpaRepository<Company,Long> {
-    @Query(value = "SELECT * FROM product_service.company WHERE company_id = ?",nativeQuery = true)
-    Company findCompanyByCompanyId (Long companyid);
+
+    @Query("SELECT c FROM Company c WHERE c.companyName = ?1")
+    Company findCompanyByCompanyName(String companyName);
 
 }

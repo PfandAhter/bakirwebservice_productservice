@@ -18,7 +18,7 @@ public class ProductAddRequest extends BaseRequest{
     private String categoryId;
 
     @Column(name = "company_id")
-    private String companyId;
+    private String companyName;
 
     @Column(name = "stock")
     private int stock;
