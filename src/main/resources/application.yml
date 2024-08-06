@@ -1,10 +1,12 @@
 server:
   port: 8083
+  servlet:
+    context-path: /stock-service
 spring:
   application:
-    name: product-service
+    name: stock-service
   datasource:
-    url: jdbc:mysql://localhost:3306/product_service
+    url: jdbc:mysql://localhost:3306/stock_service
     username: springstudent
     password: springstudent
   jpa:
@@ -19,23 +21,29 @@ spring:
     open-in-view: false
   main:
     banner-mode: off
+
+client:
+  feign:
+    payment-service:
+      path: http://localhost:8078/payment
+      userOrderedProduct: /product/ordered
+
+    microServiceRegister-service:
+      path: http://localhost:8090/registerservice
+      ready: /ready
+      stopped: /stopped
+
+    user-service:
+      path: http://localhost:8082/user
+      extractRoleFromToken: /extract/role
+      extractSellerNameFromToken: /extract/seller-name
+
+    token-service:
+      path: http://localhost:8079/token
+      extractUsername: /extract/username
+
 app:
-  routesMicroservices:
-    paymentService:
-      createOrder: http://localhost:8078/paymentservice/createorder
-    tokenService:
-      extractUsername: http://localhost:8079/tokenservice/extractusername
-  routesController:
-    requestmapping:
-      categoryServiceController: /categoryservice/category
-      productServiceController: /productservice/product
-    product:
-      productDetails: /getproductinfo
-      buyWithProductCode: /createorder
-      productListResponse: /productlist
-      productListByCategoryName: /categorylistbycategoryname
-    category:
-      categoryListResponse: /categorylist
+  client:
 
 #app:
 #  jwtSecret: S5arZ8qX8Anvk60LIHdGKZiGyLAyxW+LU1Xw2H4R6Uu1ndlUNPqhpVuKtFsfFvA+
